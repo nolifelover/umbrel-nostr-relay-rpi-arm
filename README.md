@@ -4,7 +4,7 @@
   </a>
   <h1 align="center">Nostr Relay for Umbrel for RPI</h1>
   <p align="center">
-    Original from <a href="https://github.com/getumbrel/umbrel-nostr-relay">umbrel-nostr-relay</a> 
+    Original from <a href="https://github.com/getumbrel/umbrel-nostr-relay">umbrel-nostr-relay</a> This repository is building for RaspberryPI arm architecture only.<br/>
     Run your private Nostr relay to backup all your activity on Nostr. An official app by Umbrel. Powered by <a href="https://github.com/scsibug/nostr-rs-relay">nostr-rs-relay</a>.
     <br />
     <a href="https://umbrel.com"><strong>umbrel.com »</strong></a>
@@ -27,9 +27,30 @@
 
 ## Getting started
 
-This app can be installed in one click via the Umbrel App Store. Watch the introduction and demo video below:
+This app repository using docker and docker-compose to start nostr relay with 1 command line
+```bash
+#change config in data/relay/config.toml
+docker compose up -d
+```
+Enjoy your home RaspberryPi as a Nostr relay
 
-[![Introducing Nostr Relay on Umbrel](https://i.imgur.com/kv3QVs4.jpg)](https://www.youtube.com/watch?v=YjNa1MKvdrs "Introducing Nostr Relay on Umbrel")
+** You can setup DNS and reverse proxy for this relay [nginx-reverse-proxy](https://nolifelover.medium.com/create-a-reverse-proxy-for-your-application-using-nginx-and-certbot-25fe971682c6)
+```
+#example for reverse proxy th2.nostr.earnkrub.xyz
+server {
+ server_name th2.nostr.earnkrub.xyz;
+ access_log /var/log/nginx/th2.nostr.earnkrub.xyz.access.log;
+ error_log /var/log/nginx/th2.nostr.earnkrub.xyz.error.log;
+
+ location / {
+  proxy_pass http://127.0.0.1:3000;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "Upgrade";
+  proxy_set_header Host $host;
+ }
+}
+```
 
 By running your personal Nostr Relay on your Umbrel, you can connect your Nostr clients, such as Damus, Astral, and Amethyst, to your private relay for seamless backup of all your activity on Nostr. This ensures that your activity is not lost even if you are censored or blocked by public relays.
 
