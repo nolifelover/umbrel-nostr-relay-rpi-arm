@@ -2,8 +2,7 @@ version: "3.7"
 
 services:
   web:
-    # image: getumbrel/umbrel-nostr-relay
-    build: ./ui
+    image: nolifelover/umbrel-nostr-relay-web
     user: "1000:1000"
     restart: on-failure
     environment:
@@ -15,16 +14,16 @@ services:
       - 3000:3000
 
   relay:
-    image: getumbrel/nostr-rs-relay:0.8.1@sha256:a6c857aecd4964bf058ec5c3c0fea95e0d87ed0cc789f2140f96de108e5515ec
+    image: nolifelover/umbrel-nostr-relay-relay
+    build: ./nostr-rs-relay
     user: "1000:1000"
     restart: on-failure
     volumes:
-      - ${PWD}/data/relay/config.toml:/app/config.toml
-      - ${PWD}/data/relay/db:/app/db
+      - ${PWD}/data/relay/config.toml:/usr/src/app/config.toml
+      - ${PWD}/data/relay/db:/usr/src/app/db
 
   relay-proxy:
-    # image: getumbrel/umbrel-nostr-relay-proxy
-    build: ./relay-proxy
+    image: nolifelover/umbrel-nostr-relay-relay-proxy
     user: "1000:1000"
     restart: on-failure
     environment:

@@ -2,8 +2,9 @@
   <a href="https://umbrel.com">
     <img src="https://i.imgur.com/7Fd0HJy.jpg" alt="Logo">
   </a>
-  <h1 align="center">Nostr Relay for Umbrel</h1>
+  <h1 align="center">Nostr Relay for Umbrel for RPI</h1>
   <p align="center">
+    Original from <a href="https://github.com/getumbrel/umbrel-nostr-relay">umbrel-nostr-relay</a> 
     Run your private Nostr relay to backup all your activity on Nostr. An official app by Umbrel. Powered by <a href="https://github.com/scsibug/nostr-rs-relay">nostr-rs-relay</a>.
     <br />
     <a href="https://umbrel.com"><strong>umbrel.com »</strong></a>
